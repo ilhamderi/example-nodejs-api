@@ -64,9 +64,9 @@ jobs:
       - name: Pull latest images
         run: |
           cd /home/ubuntu/apps
-          docker-compose pull
+          docker compose pull
 
-      - name: Deploy with docker-compose
+      - name: Deploy with docker compose
         run: |
           cd /home/ubuntu/apps
           docker compose down
