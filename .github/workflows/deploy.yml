@@ -15,6 +15,7 @@ jobs:
   build-and-push:
     name: Build and Push Docker Image
     runs-on: self-hosted
+    environment: test
     
     steps:
       - name: Checkout code
