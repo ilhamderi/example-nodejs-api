@@ -9,7 +9,7 @@ on:
 
 env:
   DOCKER_IMAGE: ilhamderi/example-nodejs-api
-  DOCKER_TAG: ${{ github.sha }}
+  DOCKER_TAG: latest
 
 jobs:
   build-and-push:
