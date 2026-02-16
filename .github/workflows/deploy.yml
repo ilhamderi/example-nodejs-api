@@ -58,27 +58,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create .env file
-        run: |
-          cat > .env << EOF
-          DOCKER_IMAGE=${{ env.DOCKER_IMAGE }}
-          DOCKER_TAG=${{ env.DOCKER_TAG }}
-          NODE_ENV=production
-          EOF
+      - name: Navigate to apps directory
+        run: cd /home/ubuntu/apps
 
       - name: Pull latest images
-        run: docker-compose pull
+        run: |
+          cd /home/ubuntu/apps
+          docker-compose pull
 
       - name: Deploy with docker-compose
         run: |
-          docker-compose down
-          docker-compose up -d
+          cd /home/ubuntu/apps
+          docker compose down
+          docker compose up -d
 
       - name: Clean up old images
         run: docker image prune -af --filter "until=72h"
 
       - name: Verify deployment
         run: |
+          cd /home/ubuntu/apps
           echo "Waiting for container to be healthy..."
           sleep 10
-          docker-compose ps
+          docker compose ps
